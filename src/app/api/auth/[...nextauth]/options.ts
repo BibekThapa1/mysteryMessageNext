@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
           });
           if (!user) {
             throw new Error("No user found with this email");
-          } 
+          }
           if (!user.isVerified) {
             throw new Error("Please verify youth cou");
           }
@@ -43,4 +43,31 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token._id = user._id?.toString();
+        token.isVerified = user.isVerified;
+        token.isAcceptingMessage = user.isAcceptingMessage;
+        token.username = user.username;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user._id = token._id;
+        session.user.isVerified = token.isVerified;
+        session.user.isAcceptingMessage = token.isAcceptingMessage;
+        session.user.username = token.username;
+      }
+      return session;
+    },
+  },
+  pages: {
+    signIn: "/sign-in",
+  },
+  session: {
+    strategy: "jwt",
+  },
+  secret: process.env.NEXT_AUTH_SECRET,
 };
