@@ -1,0 +1,22 @@
+[
+    {
+        "title":"Message from User 10",
+        "content":"Hey how are you doing today",
+        "received":"10 minutes ago"
+    },
+    {
+        "title":"Message from User 40",
+        "content":"Hey how are you doing today",
+        "received":"20 minutes ago"
+    },
+    {
+        "title":"Message from User 10",
+        "content":"Hey how are you doing yesterday",
+        "received":"10 minutes ago"
+    },
+    {
+        "title":"Message from User 20",
+        "content":"Hey how are you doing tommoroow",
+        "received":"10 minutes ago"
+    }
+]
