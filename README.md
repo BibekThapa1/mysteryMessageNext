@@ -1,16 +1,16 @@
 # MessageApp
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). It is a messaging application that allows users to sign up, verify their accounts, send messages, and manage their message preferences.
+MessageApp is a messaging application built with [Next.js](https://nextjs.org). It allows users to sign up, verify their accounts, send messages, and manage their message preferences. The project leverages modern web technologies and best practices to deliver a secure and scalable messaging platform.
 
 ## Features
 
-- User authentication with [NextAuth.js](https://next-auth.js.org).
-- Email verification using one-time codes.
-- Secure password hashing with `bcryptjs`.
-- MongoDB integration with `mongoose` for data storage.
-- API routes for user registration, login, message sending, and more.
-- Tailwind CSS for styling.
-- React Email for sending verification emails.
+- **User Authentication**: Powered by [NextAuth.js](https://next-auth.js.org) for secure and extensible authentication.
+- **Email Verification**: Users verify their accounts using one-time codes sent via email.
+- **Secure Passwords**: Passwords are hashed using `bcryptjs` for enhanced security.
+- **Database Integration**: MongoDB is used for data storage, managed with `mongoose`.
+- **API Routes**: RESTful API endpoints for user authentication, messaging, and utilities.
+- **Styling**: Built with Tailwind CSS for a modern and responsive design.
+- **Email Templates**: Uses React Email for customizable and reusable email templates.
 
 ## Getting Started
 
@@ -46,12 +46,6 @@ Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
@@ -81,6 +75,11 @@ message-app/
 ├── postcss.config.mjs    # PostCSS configuration
 ├── src/
 │   ├── app/              # Application pages and layouts
+│   ├── api/              # API routes
+│   │   ├── auth/         # Authentication routes
+│   │   │   ├── [...nextauth]/ # NextAuth.js configuration
+│   │   │   │   ├── route.ts  # API handler for authentication
+│   │   │   │   └── options.ts # NextAuth options
 │   ├── context/          # React context providers
 │   ├── helpers/          # Utility functions
 │   ├── lib/              # Libraries (e.g., database connection)
@@ -96,9 +95,7 @@ message-app/
 
 ### Authentication
 
-- **POST** `/api/auth/sign-up`: Register a new user.
-- **POST** `/api/auth/sign-in`: Log in an existing user.
-- **POST** `/api/auth/verify-code`: Verify a user's email with a code.
+- **GET/POST** `/api/auth/[...nextauth]`: Handles authentication using NextAuth.js.
 
 ### Messaging
 
@@ -111,20 +108,21 @@ message-app/
 
 - **GET** `/api/check-username-unique`: Check if a username is available.
 
+## Authentication Flow
+
+The authentication flow is powered by NextAuth.js. The `route.ts` file in the `[...nextauth]` directory serves as the API handler for authentication requests. It imports the `authOptions` configuration from the `options.ts` file, which defines the authentication providers, callbacks, and session management.
+
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project, check out the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - Learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - An interactive Next.js tutorial.
-
-You can also check out [the Next.js GitHub repository](https://github.com/vercel/next.js) for feedback and contributions.
+- [NextAuth.js Documentation](https://next-auth.js.org/getting-started/introduction) - Learn how to implement authentication with NextAuth.js.
+- [MongoDB Documentation](https://www.mongodb.com/docs/) - Learn how to work with MongoDB.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com). Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## License
 
